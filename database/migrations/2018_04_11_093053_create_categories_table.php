@@ -13,14 +13,18 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-       Schema::create( 'categories', function ( Blueprint $table ) {
-            $table->increments( 'id' );
-            $table->string( 'name', 200 );
-            $table->tinyInteger( 'status' )->default( 0 );
-            $table->timestamps();
-            $table->softDeletes();
-        } );
-    }
+     Schema::create( 'categories', function ( Blueprint $table ) {
+        $table->increments('id');
+        $table->string('name')->unique();
+        $table->timestamps();
+    });
+
+     Schema::create('product_category', function (Blueprint $table) {
+        $table->integer('product_id');
+        $table->integer('category_id');
+        $table->primary(['product_id', 'category_id']);
+    });
+ }
 
     /**
      * Reverse the migrations.
@@ -29,5 +33,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down() {
         Schema::dropIfExists( 'categories' );
+        Schema::dropIfExists( 'product_category' );
     }
 }
