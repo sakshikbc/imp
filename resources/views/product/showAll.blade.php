@@ -8,6 +8,7 @@
 				<th>Product Name</th>
 				<th>Original Price</th>
 				<th>Quantity</th>
+				<th>Category</th>
 				<th>Status</th>
 				<th>Actions</th>
 			</tr>
@@ -19,6 +20,13 @@
 					<td>{{ $product->product_name }}</td>
 					<td>{{ $product->original_price }}</td>
 					<td>{{ $product->in_stock }}</td>
+					<td>
+						@if (count($product->categories))
+						@foreach ($product->categories as $category)
+						<a href="/articles/category/{{ $category->name }}">{{ $category->name }}</a>
+						@endforeach
+						@endif
+					</td>
 					<td>{{ $product->status }}</td>
 					<td><a href="{{ route('product.show', $product->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></a>
 						<a href="{{ route('product.edit', $product->id) }}" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>

@@ -17,7 +17,7 @@ class WelcomeController extends Controller
     public function index()
     {
         $products = Product::all();
-        $categories = Category::all();
+        $categories = Category::has('products')->pluck('name');
         return view('welcome', compact('products', 'categories'));
     }
 

@@ -33,8 +33,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/ajaxTest', 'TestController@ajaxTest');
 //cart
 
-Route::get('/addProduct/{productId}', 'CartController@addItem');
-Route::get('/removeItem/{productId}', 'CartController@removeItem');
-Route::get('/cart', 'CartController@showCart');
- 
+Route::post('/posts/{post}/comments', 'CommentsController@store');
+Route::get('/post/comment/{comment}', 'CommentsController@destroy')->name('comment-destroy');
+Route::get('/comment/edit/{comment}', 'CommentsController@edit')->name('comment-edit');
+Route::post('/comment/update/{comment}', 'CommentsController@update')->name('comment-update');
 
+Route::get('/comments', 'CommentsController@index')->name('comments.index');
+Route::get('/comment/approve/{comment}', 'CommentsController@approve')->name('comment-approve');
+Route::get('/comment/reject/{comment}', 'CommentsController@reject')->name('comment-disapprove');

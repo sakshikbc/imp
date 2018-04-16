@@ -1,22 +1,22 @@
 @extends('layouts.master')
 @section('content')
 <div class="container">
-<form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
-	{{ csrf_field() }}
-  <div class="form-group">
+  <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
+   {{ csrf_field() }}
+   <div class="form-group">
     <label for="exampleInputEmail1">Product Title</label>
     <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Product Name">
     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
- -->  </div>
-  <div class="form-group">
-    <label for="original_price">Original Price</label>
-    <input type="text" class="form-control" id="original_price" placeholder="Original Price" name="original_price">
-  </div>
+    -->  </div>
+    <div class="form-group">
+      <label for="original_price">Original Price</label>
+      <input type="text" class="form-control" id="original_price" placeholder="Original Price" name="original_price">
+    </div>
 
     <div class="form-group">
-    <label for="original_price">Discount Price</label>
-    <input type="text" class="form-control" id="discount_price" placeholder="Discount Price" name="discount_price">
-  </div>
+      <label for="original_price">Discount Price</label>
+      <input type="text" class="form-control" id="discount_price" placeholder="Discount Price" name="discount_price">
+    </div>
 <!--   <div class="form-group">
     <label for="exampleSelect1">Example select</label>
     <select class="form-control" id="exampleSelect1">
@@ -73,6 +73,19 @@
       Check me out
     </label>
   </div> -->
+  <h4 class="_st">Category</h4>
+  <ul class="list-inline">
+
+
+    @foreach($categories as $category)
+    <li>
+      <input class="magic-checkbox" type="checkbox" name="category[]" value="{{ $category->id }}" id="{{ $category->id }}" >
+      <label for="{{ $category->id }}">  {{ $category->name }}</label>
+
+    </li>
+    @endforeach
+  </ul>
+
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>

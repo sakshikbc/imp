@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-
+        
     }
 
     /**
@@ -24,7 +24,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $categories = Category::all();
+        return view('product.create', 'categories');
     }
 
     /**
@@ -48,13 +49,14 @@ class ProductController extends Controller
                ]);
            }
        }    
-       Product::create([
+       $product = Product::create([
         'product_name' => $request->product_name,
         'original_price' => $request->original_price,
         'discount_price' => $request->discount_price,
         'description' => $request->description,
         'category_id' => 1,
     ]);
+       $product->categories()->attach($request->category);
        return back();
    }
 
@@ -104,6 +106,7 @@ class ProductController extends Controller
             'description' => $request->description,
             // 'in_stock' => $request->in_stock,
         ]);
+        Product::find($id)->categories()->attach($request->category);
         return back();
     }
 
