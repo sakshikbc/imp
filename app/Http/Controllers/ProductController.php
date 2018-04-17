@@ -15,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
+        $products = Product::paginate();
+        $categories = Category::has('products')->pluck('name');
+        return view('welcome', compact('products', 'categories'));
     }
 
     /**
@@ -26,7 +28,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('product.create', 'categories');
+        return view('product.create', compact('categories'));
     }
 
     /**
@@ -37,29 +39,34 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         if($request->hasFile('image')){
-           foreach ($request->image as $file) {
-               $filename = $file->getClientOriginalName();
-               $name = pathinfo($filename, PATHINFO_FILENAME);
-               $ext = $file->getClientOriginalExtension();
-               $filename = substr(str_slug($name), 0, 10)  . '-' . time() . '.' . $ext;
-               $file->move(public_path('product_images'), $filename);
-               $filepath = 'product_images' . $filename;
-               $media = Product::create([
-                   'image' => 'product_images/'.$filename,
-               ]);
-           }
-       }    
-       $product = Product::create([
+         foreach ($request->image as $file) {
+             $filename = $file->getClientOriginalName();
+               // dd($filename);
+             $name = pathinfo($filename, PATHINFO_FILENAME);
+             $ext = $file->getClientOriginalExtension();
+             $filename = substr(str_slug($name), 0, 10)  . '-' . time() . '.' . $ext;
+             $file->move(public_path('product_images'), $filename);
+             $filepath = 'product_images' . $filename;
+             $media = Product::create([
+                 'image' => 'product_images/'.$filename,
+             ]);
+             dd($media);
+         }
+     }    
+     $product = Product::create([
         'product_name' => $request->product_name,
         'original_price' => $request->original_price,
         'discount_price' => $request->discount_price,
         'description' => $request->description,
-        'category_id' => 1,
+        'url' => $request->url,
+        'status' => 'active'
+        // 'category_id' => 1,
     ]);
-       $product->categories()->attach($request->category);
-       return back();
-   }
+     $product->categories()->attach($request->category);
+     return back();
+ }
 
     /**
      * Display the specified resource.
@@ -123,5 +130,11 @@ class ProductController extends Controller
     {
         Product::where('id', $id)->delete();
         return back();
+    }
+
+    public function Category(Category $category)
+    {
+        $products = $category->products;
+        return view('product.category', compact('products', 'category') );
     }
 }

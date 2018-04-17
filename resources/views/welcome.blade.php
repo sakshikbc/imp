@@ -9,13 +9,7 @@ $meta = [
 @extends('layouts.master')
 @section('content')
 <hr>
-<!-- <nav class="navbar navbar-default">
-  <ul class="nav navbar-nav">
-    <li class="active "><a href="#">Home</a></li>
-    <li><a href="#">About Us</a></li>
-    <li><a href="#">Contact Us</a></li>
-  </ul>
-</nav> -->
+
 @if($products)
 <div class="container">
   <div class="row">
@@ -26,11 +20,11 @@ $meta = [
         <div class="row">
           <ul class="simple-list">
             <?php foreach ($categories as $category): ?>
-          <li>
-            <a href="/category/{{ $category }}">
-              {{ $category }}
-            </a>
-          </li>
+              <li>
+                <a href="/category/{{ $category }}">
+                  {{ $category }}
+                </a>
+              </li>
             <?php endforeach ?>
           </ul>
         </div>
@@ -56,89 +50,90 @@ $meta = [
                 <div class="col-sm-4">
                   <div class="product-box">
                     <a href="{{ route('product', $product->url ) }}"><img src="{{ asset('product_images/3.jpg') }}" class="product_image"></a>
-                   
-                    {{ $product['product_name'] }}
+
+                    <a href="{{ route('product', $product->url ) }}">{{ $product['product_name'] }}</a>
                     <br>
                     &#8377; {{ $product['original_price']}}<br>
-                    <button title="Add to Cart" class="addCart">Add to Cart</button>
+                    <button title="Buy this product" class="buy"  data-toggle="modal" data-target="#phone">Buy</button>
                   </div>
                 </div>
               <?php endforeach ?>
               <br>
             </div>
-            <!--   <div class="col-sm-4">
-                <div class="product-box">
-                  <img src={{ asset('product_images/1.jpg')}} class="product_image">
-                  &#8377; 0.00<br>
-                  <button title="Add to Cart">Add to Cart</button>
+            @endif
+            {{-- phone model --}}
+            <div class="modal fade" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close closemodel" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Enter your Name and Number</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form method="post">
+                      {{ csrf_field() }}
+                      <input type="text" name="name" placeholder="Your name here">
+                      <input type="tel" name="phone" placeholder="Your number here">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary send"  data-toggle="modal" data-target="#send">Send</button>
+                    </div>
+                  </form>
                 </div>
               </div>
-              <div class="col-sm-4">
-                <div class="product-box">
-                  <img src={{ asset('product_images/4.jpg')}} class="product_image">
-                  &#8377; 0.00<br>
-                  <button title="Add to Cart">Add to Cart</button>
-                </div>
-              </div>
-
             </div>
+            {{-- phonemodel complete --}}
 
-            <!-- third row -->
-            <!-- <br>
-            <div class="row center">
-              <div class="col-sm-4">
-                <div class="product-box">
-                  <img src={{ asset('product_images/4.jpg')}} class="product_image">
-                  &#8377; 0.00<br>
-                  <button title="Add to Cart">Add to Cart</button>
-
-                </div>
-
-              </div>
-              <div class="col-sm-4">
-                <div class="product-box">
-                  <img src={{ asset('product_images/3.jpg')}} class="product_image">
-                  &#8377; 0.00<br>
-                  <button title="Add to Cart">Add to Cart</button>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="product-box">
-                  <img src={{ asset('product_images/1.jpg')}} class="product_image">
-                  &#8377; 0.00<br>
-                  <button title="Add to Cart">Add to Cart</button>
+            {{-- verify model --}}
+            <div class="modal fade" id="verify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Verify</h4>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
                 </div>
               </div>
-
             </div>
-          </div> */-->
-          @endif
+            {{-- verify model complete --}}
+          </div>
         </div>
-      </div>
-      {{ csrf_field() }}
-      <button class="btn">hi</button>
-      <div class="bg-danger ajaxStatus"></div>
-      <script type="text/javascript">
-        $('.btn').click(function(){
-          var test = "";
-          var token = $('input[name="_token"]').val();
-          $.ajax({
-            url: "/ajaxTest",
-            type: "post",
-            data: { test : test, _token: token },
-            success: function(d) {
-              console.log(d);
-              $('.ajaxStatus').text(d['status']);
-                      // alert(d['status']);
-                    }
-                  });
-        });
-      </script>
-      <script>
-        $('document').ready(function(){
-          $('.addCart').click(function(){
-            alert ("yuhoo");
+        <script>
+          $(document).ready(function () {
+           $(".buy").click(function(){
+             $('#phone').modal('show');
+           });
+         });
+          $(document).ready(function () {
+            $("#send").click(function(){
+              $( ".closemodel" ).click();
+              $('#verify').modal('show');
+            });
           });
-        });
-      </script>
-      @endSection
+
+          var token = $('input[name="_token"]').val();
+
+          $(".send").click(function(){
+            var phone = $('input[name="phone"]').val();
+            $.ajax({
+             type: 'POST',
+             url: '/requestOtp',
+             data: { '_token': token, 'phone': phone },
+             success: function(data){
+              if(data['status'] == 'failed'){
+                $('#phone').hide();
+              }
+            }
+          });
+          });
+
+        </script>
+        @endSection

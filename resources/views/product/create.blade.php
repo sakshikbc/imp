@@ -41,6 +41,10 @@
     <label for="description">Description</label>
     <textarea class="form-control" id="description" name="description" rows="3"></textarea>
   </div>
+      <div class="form-group">
+      <label for="original_price">URL</label>
+      <input type="text" class="form-control" id="url" placeholder="URL" name="url">
+    </div>
   <div class="form-group">
     <label for="exampleInputFile">File input</label>
     <input type="file" class="form-control-file" name="image" id="image">

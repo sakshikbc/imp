@@ -5,6 +5,7 @@
 <meta name="description" content='{{ $product->meta_desc }}'>
 <meta property="og:title" content="{{$product->title}}" />
 <meta property="og:image" content="{{ asset($product->image) }}" />
+@endSection 
 <style type="text/css">
 
 </style>
