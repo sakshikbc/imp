@@ -17,6 +17,5 @@ class TestController extends Controller
 	    		'status' => 'failed!!!'
 	    	];
     	}
- 
     }
 }

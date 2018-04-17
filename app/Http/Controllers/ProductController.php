@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -66,9 +67,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, $url)
     {
-        //
+        $product = Product::where('url', $url)->first();
+        $categories = Category::has('products')->pluck('name');
+        return view('product.show', compact('product', 'categories'));
     }
 
     public function showAll()

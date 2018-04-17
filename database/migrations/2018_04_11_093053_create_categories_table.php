@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
         $table->timestamps();
     });
 
-     Schema::create('product_category', function (Blueprint $table) {
+     Schema::create('category_product', function (Blueprint $table) {
         $table->integer('product_id');
         $table->integer('category_id');
         $table->primary(['product_id', 'category_id']);
@@ -33,6 +33,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down() {
         Schema::dropIfExists( 'categories' );
-        Schema::dropIfExists( 'product_category' );
+        Schema::dropIfExists( 'category_product' );
     }
 }

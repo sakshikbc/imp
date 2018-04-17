@@ -2,8 +2,36 @@
 <html lang="en">
 <head>
   <title>Ederno</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="language" content="English">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta name="google-site-verification" content="XVlGAgkGo6Pk-wr-_-AP57VPqTW_3eHzHmuipbkXrIU" />
+    <!-- <link rel="icon" href="bigly-fav.png" sizes="32x32" /> -->
+    <?php if(isset($meta) && isset($meta['title'])): ?>
+        <title><?php echo $meta['title']; ?></title>
+    <?php else: ?>
+        <title>BigLy</title>
+    <?php endif ?>    
+    <?php if(isset($meta) && isset($meta['description'])): ?>
+        <meta name="Description" content="<?php echo $meta['description']; ?>">
+    <?php endif ?>
+    <?php if(isset($meta) && isset($meta['keywords'])): ?>
+        <meta name="Keywords" content="<?php echo $meta['keywords']; ?>">
+    <?php endif ?>
+    <?php if(isset($meta) && isset($meta['title'])): ?>
+        <meta property="og:title" content="<?php echo $meta['title']; ?>">
+    <?php endif ?>
+    <?php if(isset($meta) && isset($meta['description'])): ?>
+        <meta  property="og:description" content="<?php echo $meta['description']; ?>">
+    <?php endif ?>
+    <?php if(isset($meta) && isset($meta['description'])): ?>
+        <meta property="og:url" content="<?php echo Request::url(); ?>">
+    <?php endif ?>
+    <meta property="og:image" content="{{ asset('images/biglyhome-page-screen.png') }}">
+    @yield('metas')
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/myown.css') }}">
@@ -209,6 +237,5 @@
 
                 </footer>
                 <!--/.Footer-->
-
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	

@@ -64,3 +64,13 @@ body{
     /*text-align: center;*/
     width: 200%;
 }
+.box {
+  padding: 10px;
+  border: 2px solid gray;
+  margin: 0;
+  width: 550px;
+}
+.description {
+    text-align: center;
+    float: right;
+}

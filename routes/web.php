@@ -21,6 +21,7 @@ Route::get('/product/{id}', 'ProductController@show')->name('product.show');
 Route::get('/product/{id}/edit', 'ProductController@edit')->name('product.edit');
 Route::post('/product/{id}/update', 'ProductController@update')->name('product.update');
 Route::get('/product/{id}/destroy', 'ProductController@destroy')->name('product.destroy');
+Route::get('/product/{product}', 'ProductController@show')->name('product');
 
 //Category
 Route::get('/category/create', 'CategoryController@create')->name('category.create');

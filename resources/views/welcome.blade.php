@@ -1,6 +1,13 @@
+<?php 
+$meta = [
+  'title' => 'Bigly | Get all The Update of E-commerce Marketplaces and Droship Business',
+  'description' => 'Description – Bigly | Get all the e-commerce and dropship business  latest reports, tips and tricks, how to sell online and how to increase sell on e-commerce marketplaces.',
+  'keywords' => 'Keywords – bigly blog ,blog biglydropship , dropship blog',
+  // 'image' = > 'http://s.bigly.io/blog_main/1520602870-G9mBhffzFbo61Yv.jpg',
+];
+?>
 @extends('layouts.master')
 @section('content')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <hr>
 <!-- <nav class="navbar navbar-default">
   <ul class="nav navbar-nav">
@@ -9,7 +16,7 @@
     <li><a href="#">Contact Us</a></li>
   </ul>
 </nav> -->
-
+@if($products)
 <div class="container">
   <div class="row">
     <div class="col-md-2">
@@ -19,7 +26,11 @@
         <div class="row">
           <ul class="simple-list">
             <?php foreach ($categories as $category): ?>
-              <li>{{ $category->name }}</li>
+          <li>
+            <a href="/category/{{ $category }}">
+              {{ $category }}
+            </a>
+          </li>
             <?php endforeach ?>
           </ul>
         </div>
@@ -44,7 +55,8 @@
               <?php foreach ($products as $product): ?>
                 <div class="col-sm-4">
                   <div class="product-box">
-                    <img src={{ asset('product_images/3.jpg')}} class="product_image">
+                    <a href="{{ route('product', $product->url ) }}"><img src="{{ asset('product_images/3.jpg') }}" class="product_image"></a>
+                   
                     {{ $product['product_name'] }}
                     <br>
                     &#8377; {{ $product['original_price']}}<br>
@@ -52,7 +64,7 @@
                   </div>
                 </div>
               <?php endforeach ?>
-            <br>
+              <br>
             </div>
             <!--   <div class="col-sm-4">
                 <div class="product-box">
@@ -100,32 +112,33 @@
 
             </div>
           </div> */-->
+          @endif
         </div>
       </div>
-{{ csrf_field() }}
-<button class="btn">hi</button>
-<div class="bg-danger ajaxStatus"></div>
+      {{ csrf_field() }}
+      <button class="btn">hi</button>
+      <div class="bg-danger ajaxStatus"></div>
       <script type="text/javascript">
         $('.btn').click(function(){
           var test = "";
           var token = $('input[name="_token"]').val();
           $.ajax({
-                  url: "/ajaxTest",
-                  type: "post",
-                  data: { test : test, _token: token },
-                  success: function(d) {
-                      console.log(d);
-                      $('.ajaxStatus').text(d['status']);
+            url: "/ajaxTest",
+            type: "post",
+            data: { test : test, _token: token },
+            success: function(d) {
+              console.log(d);
+              $('.ajaxStatus').text(d['status']);
                       // alert(d['status']);
-                  }
-            });
-          });
+                    }
+                  });
+        });
       </script>
       <script>
-  $('document').ready(function(){
-    $('.addCart').click(function(){
-      alert ("yuhoo");
-    });
-  });
-</script>
+        $('document').ready(function(){
+          $('.addCart').click(function(){
+            alert ("yuhoo");
+          });
+        });
+      </script>
       @endSection
