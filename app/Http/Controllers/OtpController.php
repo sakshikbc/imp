@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Otp;
+use App\Models\Otp;
 use Illuminate\Http\Request;
 
-class OptController extends Controller
+class OtpController extends Controller
 {
 
 	public function requestOtp (Request $request) 
