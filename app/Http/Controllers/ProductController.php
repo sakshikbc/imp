@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Recommend;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -17,7 +18,15 @@ class ProductController extends Controller
     {
         $products = Product::paginate();
         $categories = Category::has('products')->pluck('name');
-        return view('welcome', compact('products', 'categories'));
+        $mostly_viewed_products = DB::table('recommends')
+                                ->select('product_id', DB::raw('count(*) as total'))
+                                ->groupBy('product_id')
+                                ->orderBy('total', 'desc')
+                                ->take(3)
+                                ->get();
+        // $reProducts = Product::whereIn('id', $mostly_viewed_products->product_id)->get();
+        // dd($reProducts);
+        return view('welcome', compact('products', 'categories', 'mostly_viewed_products'));
     }
 
     /**
@@ -76,8 +85,12 @@ class ProductController extends Controller
      */
     public function show(Product $product, $url)
     {
+
         $product = Product::where('url', $url)->first();
         $categories = Category::has('products')->pluck('name');
+        $recommend = Recommend::create([
+            'product_id' => $product->id, 
+        ]);
         return view('product.show', compact('product', 'categories'));
     }
 

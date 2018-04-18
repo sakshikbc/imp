@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    public $table = 'products';
-    public $guarded = ['id'];
+	public $table = 'products';
+	public $guarded = ['id'];
 
-    public function comments()
+	public function comments()
 	{
 		return $this->hasMany(Comment::class);
 	}
@@ -23,6 +23,10 @@ class Product extends Model
 	public function getRouteKeyName()   
 	{
 		return 'url';
+	}
+	public function recommend()
+	{
+		return $this->belongsTo(Recommend::class);
 	}
 
 }
