@@ -70,10 +70,10 @@ $meta = [
                     <h4 class="modal-title" id="myModalLabel">Enter your Name and Number</h4>
                   </div>
                   <div class="modal-body">
-                    <form method="post">
+                    <form method="post" action="/requestOtp">
                       {{ csrf_field() }}
                       <input type="text" name="name" placeholder="Your name here">
-                      <input type="tel" name="phone" placeholder="Your number here">
+                      <input type="text" name="phone" placeholder="Your number here">
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

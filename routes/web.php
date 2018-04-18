@@ -44,5 +44,5 @@ Route::get('/comments', 'CommentsController@index')->name('comments.index');
 Route::get('/comment/approve/{comment}', 'CommentsController@approve')->name('comment-approve');
 Route::get('/comment/reject/{comment}', 'CommentsController@reject')->name('comment-disapprove');
 
-Route::post('/requestOtp', 'OptController@requestOtp');
-Route::post('/verifyOtp', 'OptController@verifyOtp');
+Route::post('/requestOtp', 'OtpController@requestOtp');
+Route::post('/verifyOtp', 'OtpController@verifyOtp');
