@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'ProductController@index');
+Route::get('search', 'ProductController@search')->name('search');
 Route::get('/admin', 'UserController@index');
 //Product
 Route::get('/product/create', 'ProductController@create')->name('product.create');
@@ -25,7 +26,7 @@ Route::get('/product/{product}', 'ProductController@show')->name('product');
 Route::get('/category/{category}', 'ProductController@category');
 
 //Category
-Route::get('/category/create', 'CategoryController@create')->name('category.create');
+Route::get('/category', 'CategoryController@create')->name('category.create');
 Route::post('/category/store', 'CategoryController@store')->name('category.store');
 Route::get('/categories', 'CategoryController@showAll')->name('category.showAll');
 

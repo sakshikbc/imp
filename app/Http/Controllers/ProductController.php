@@ -138,9 +138,17 @@ class ProductController extends Controller
         return back();
     }
 
-    public function Category(Category $category)
+    public function category(Category $category)
     {
         $products = $category->products;
         return view('product.category', compact('products', 'category') );
+    }
+
+    public function search(Request $request)
+    {
+        $data = $request->search;
+        $products = Product::where('product_name', 'like', "%$data%")
+        ->orWhere('description', 'like', "%$data%")->paginate();
+        return view('welcome', compact('products'));
     }
 }
