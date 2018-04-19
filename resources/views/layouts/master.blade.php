@@ -46,8 +46,8 @@
                 Ederno
                 </a></div>
         <div class="col-md-6 center"> 
-         <form class="navbar-search pull-left">
-          <input type="text" class="search-query" placeholder="Search">
+         <form class="navbar-search pull-left" action="{{ route('search') }}" method="get">
+          <input type="text" name="search" class="search-query" placeholder="Search">
       </form>
       <div class="glyphicon glyphicon-search"></div>
   </div>

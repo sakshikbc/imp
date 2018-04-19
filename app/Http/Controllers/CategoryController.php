@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('category.create');
     }
 
     /**
@@ -21,10 +21,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return "sbjf";
-        // return view('category.create');
+        return view('category.create');
     }
 
     /**

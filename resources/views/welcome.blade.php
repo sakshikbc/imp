@@ -1,8 +1,8 @@
 <?php 
 $meta = [
-  'title' => 'Bigly | Get all The Update of E-commerce Marketplaces and Droship Business',
-  'description' => 'Description – Bigly | Get all the e-commerce and dropship business  latest reports, tips and tricks, how to sell online and how to increase sell on e-commerce marketplaces.',
-  'keywords' => 'Keywords – bigly blog ,blog biglydropship , dropship blog',
+  'title' => 'Ederno | Get all The Update of E-commerce Marketplaces and Droship Business',
+  'description' => 'Description – Ederno | Get all the e-commerce and dropship business  latest reports, tips and tricks, how to sell online and how to increase sell on e-commerce marketplaces.',
+  'keywords' => 'Keywords – Ederno blog ,blog ',
   // 'image' = > 'http://s.bigly.io/blog_main/1520602870-G9mBhffzFbo61Yv.jpg',
 ];
 ?>
