@@ -18,15 +18,9 @@ class ProductController extends Controller
     {
         $products = Product::paginate();
         $categories = Category::has('products')->pluck('name');
-        $mostly_viewed_products = DB::table('recommends')
-                                ->select('product_id', DB::raw('count(*) as total'))
-                                ->groupBy('product_id')
-                                ->orderBy('total', 'desc')
-                                ->take(3)
-                                ->get();
         // $reProducts = Product::whereIn('id', $mostly_viewed_products->product_id)->get();
         // dd($reProducts);
-        return view('welcome', compact('products', 'categories', 'mostly_viewed_products'));
+        return view('welcome', compact('products', 'categories'));
     }
 
     /**
@@ -61,7 +55,6 @@ class ProductController extends Controller
              $media = Product::create([
                  'image' => 'product_images/'.$filename,
              ]);
-             dd($media);
          }
      }    
      $product = Product::create([

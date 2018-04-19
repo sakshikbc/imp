@@ -35,11 +35,16 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/myown.css') }}">
+
+
 </head>
 <body>
     <div class="container container-fluid header">
       <div class="row">
-        <div class="col-md-3">Ederno</div>
+        <div class="col-md-3">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                Ederno
+                </a></div>
         <div class="col-md-6 center"> 
          <form class="navbar-search pull-left">
           <input type="text" class="search-query" placeholder="Search">
@@ -47,15 +52,24 @@
       <div class="glyphicon glyphicon-search"></div>
   </div>
   <div class="col-md-3 center">
-      <span class="glyphicon glyphicon-shopping-cart space" title="Cart"></span>
       <span class="glyphicon glyphicon-heart space" title="WishList"></span>
-      <span class="glyphicon glyphicon-user space" title="Admin"></span>
+      <a href="/login"><span class="glyphicon glyphicon-user space" title="User">@if( Auth::user()) Hi' {{ Auth::user()->name }} 
+        <a href="{{ route('logout') }}"
+    onclick="event.preventDefault();
+    document.getElementById('logout-form').submit();">
+    <span class="glyphicon glyphicon-log-out"></span>
+</a>
 
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+      @endif</a>
+    
   </div>
 </div>
 </div>
-@if( Auth::user())
-<nav class="navbar navbar-default">
+@if( Auth::user()  && Auth::user()->type == "admin")
+<nav class="navbar navbar-default pull-right">
   <ul class="nav navbar-nav">
     <li class="active "><a href="#">Home</a></li>
     <li class="nav-item dropdown">
@@ -84,15 +98,6 @@
 </a>
 </div>
 </li>
-<li><a href="{{ route('logout') }}"
-    onclick="event.preventDefault();
-    document.getElementById('logout-form').submit();">
-    {{ __('Logout') }}
-</a>
-
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-</form></li>
 </ul>
 </nav>
 

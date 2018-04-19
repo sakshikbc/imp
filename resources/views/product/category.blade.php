@@ -20,43 +20,25 @@ $meta = [
 <div class="container">
   <div class="row">
     <div class="col-md-2">
-      <div class="side-bar no-padding">
-
-        Categories
-        <div class="row">
-        </div>
-        <hr>
-        Popular Products
-        <div class="row">
-          <ul class="simple-list">
-            <li><img src={{ asset('product_images/4.jpg')}} class="img-thumbnail">
-              <span style="text-align:center;">&#8377; 0.00</span><br></li>
-              <li><img src={{ asset('product_images/7.jpg')}} class="img-thumbnail">
-                <div class="text-align:center;">
-                &#8377; 0.00</div><br></li>
-                <li><img src={{ asset('product_images/1.jpg')}} class="img-thumbnail">
-                  &#8377; 0.00<br></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-10 center vl"><h1>All {{ $category->name }} Category</h1><br>
+     @include('layouts.sidebar')
+   </div>
+   <div class="col-md-10 center vl"><h1>All {{ $category->name }} Category</h1><br>
+    <br>
+    <div class="row center">
+      <?php foreach ($products as $product): ?>
+        <div class="col-sm-4">
+          <div class="product-box">
+            <a href="{{ route('product', $product->url ) }}"><img src="{{ asset('product_images/3.jpg') }}" class="product_image"></a>
+            
+            <a href="{{ route('product', $product->url ) }}">{{ $product['product_name'] }}</a>
             <br>
-            <div class="row center">
-              <?php foreach ($products as $product): ?>
-                <div class="col-sm-4">
-                  <div class="product-box">
-                    <a href="{{ route('product', $product->url ) }}"><img src="{{ asset('product_images/3.jpg') }}" class="product_image"></a>
-                   
-                    <a href="{{ route('product', $product->url ) }}">{{ $product['product_name'] }}</a>
-                    <br>
-                    &#8377; {{ $product['original_price']}}<br>
-                    <button title="Add to Cart" class="addCart">Add to Cart</button>
-                  </div>
-                </div>
-              <?php endforeach ?>
-              <br>
-            </div>
+            &#8377; {{ $product['original_price']}}<br>
+            <button title="Add to Cart" class="addCart">Add to Cart</button>
+          </div>
+        </div>
+      <?php endforeach ?>
+      <br>
+    </div>
             <!--   <div class="col-sm-4">
                 <div class="product-box">
                   <img src={{ asset('product_images/1.jpg')}} class="product_image">
