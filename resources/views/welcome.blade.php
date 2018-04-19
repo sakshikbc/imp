@@ -14,7 +14,7 @@ $meta = [
 <div class="container">
   <div class="row">
     <div class="col-md-2">
-   @include('layouts.sidebar')
+     @include('layouts.sidebar')
       </div>
       <div class="col-md-10 center vl">All Products<br>
         <br>
