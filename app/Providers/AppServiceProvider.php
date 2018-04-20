@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('layouts.sidebar', function($view) {
             $view->with('categories', $this->globals->categories());
-            $view->with('mostly_viewed_products', $this->globals->mostly_viewed_products());
+            $view->with('products', $this->globals->products());
         });
     }
 }

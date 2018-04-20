@@ -16,7 +16,10 @@
     <label for="original_price">Discount Price</label>
     <input type="text" class="form-control" id="discount_price" placeholder="Discount Price" name="discount_price" value="{{ $product->discount_price }}">
   </div>
-
+  <div class="form-group">
+    <label for="original_price">Quantity</label>
+    <input type="text" class="form-control" id="discount_price" placeholder="Quantity" name="in_stock">
+  </div>
   <div class="form-group">
     <label for="description">Description</label>
     <textarea class="form-control" id="description" name="description" rows="3">{{ $product->description }}</textarea>

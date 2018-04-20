@@ -16,11 +16,12 @@
         Popular Products
         <div class="row">
           <ul class="simple-list">
-            <?php foreach ($mostly_viewed_products as $mostly_viewed_product): ?>
-              
-              <li><img src={{ asset('product_images/4.jpg')}} class="img-thumbnail">
-                {{ $mostly_viewed_product->product_id }}
-                <span style="text-align:center;">&#8377; 0.00</span><br></li>
+            <?php foreach ($products as $product): ?>
+              <?php foreach ($product as $pro): ?>
+                
+              <li><a href="{{ route('product', $pro->url ) }}"><img src={{ asset( $pro->image) }} class="img-thumbnail"></a>
+                <span style="text-align:center;">&#8377; {{ $pro->original_price }}</span><br></li>
+              <?php endforeach ?>
                 
               <?php endforeach ?>
             </ul>

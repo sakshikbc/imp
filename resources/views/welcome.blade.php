@@ -22,7 +22,7 @@ $meta = [
           <?php foreach ($products as $product): ?>
             <div class="col-sm-4">
               <div class="product-box">
-                <a href="{{ route('product', $product->url ) }}"><img src="{{ asset('product_images/3.jpg') }}" class="product_image"></a>
+                <a href="{{ route('product', $product->url ) }}"><img src="{{ asset($product['image']) }}" class="product_image"></a>
 
                 <a href="{{ route('product', $product->url ) }}">{{ $product['product_name'] }}</a>
                 <br>
@@ -33,7 +33,9 @@ $meta = [
           <?php endforeach ?>
           <br>
         </div>
+
         @endif
+        {{  $products->render() }}
         {{-- phone model --}}
         <div class="modal fade" id="phone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -105,10 +107,10 @@ $meta = [
          url: '/requestOtp',
          data: { '_token': token, 'phone': phone },
          success: function(data){
-          console.log(data);
-              // if(data['status'] == 'success'){
-              //   $('#verify').modal('show');
-              // }
+          // console.log(data);
+              if(data['status'] == 'success'){
+                url : '/verify'
+              }
             }
           });
       });

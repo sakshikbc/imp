@@ -1,6 +1,7 @@
 <?php
 namespace App;
 use App\Models\Category;
+use App\Models\Product;
 use DB;
 
 class Globals {
@@ -11,7 +12,7 @@ class Globals {
 		return $categories;
 	}
 
-	public function mostly_viewed_products()
+	public function products()
 	{
 		$mostly_viewed_products = DB::table('recommends')
 		->select('product_id', DB::raw('count(*) as total'))
@@ -19,6 +20,14 @@ class Globals {
 		->orderBy('total', 'desc')
 		->take(3)
 		->get();
-		return $mostly_viewed_products;
+		if(!empty($mostly_viewed_products))
+		{
+			foreach ($mostly_viewed_products as $mostly_viewed_product) {
+				$products[] = Product::where('id', $mostly_viewed_product->product_id)->get();
+			}
+			
+		}
+		return $products;
+		
 	}
 }

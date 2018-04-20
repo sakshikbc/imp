@@ -17,6 +17,10 @@
       <label for="original_price">Discount Price</label>
       <input type="text" class="form-control" id="discount_price" placeholder="Discount Price" name="discount_price">
     </div>
+    <div class="form-group">
+      <label for="original_price">Quantity</label>
+      <input type="text" class="form-control" id="discount_price" placeholder="Quantity" name="in_stock">
+    </div>
 <!--   <div class="form-group">
     <label for="exampleSelect1">Example select</label>
     <select class="form-control" id="exampleSelect1">
@@ -41,10 +45,10 @@
     <label for="description">Description</label>
     <textarea class="form-control" id="description" name="description" rows="3"></textarea>
   </div>
-      <div class="form-group">
-      <label for="original_price">URL</label>
-      <input type="text" class="form-control" id="url" placeholder="URL" name="url">
-    </div>
+  <div class="form-group">
+    <label for="original_price">URL</label>
+    <input type="text" class="form-control" id="url" placeholder="URL" name="url">
+  </div>
   <div class="form-group">
     <label for="exampleInputFile">File input</label>
     <input type="file" class="form-control-file" name="image" id="image">
@@ -89,8 +93,16 @@
     </li>
     @endforeach
   </ul>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <br>
+  <h4 class="_st">Choose Any One  Category for searching purpose </h4>
+  <div class="form-check list-inline">
+    @foreach($categories as $category)
+    <input type="radio" class="form-check-input" name="categories" id="optionsRadios3" value="{{ $category->name }}" > <label> {{ $category->name }} </label>
+    @endforeach
+  </div>
+</ul>
+<br>
+<button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
 @endSection

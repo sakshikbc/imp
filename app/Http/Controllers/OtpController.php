@@ -23,9 +23,10 @@ class OtpController extends Controller
 	    $MSG91 = new Otp();
 	    $responseOtp = $MSG91->sendSMS($otp, $phone);
 	    // temporary default return. 
-	    return [
-	    	'status' => 'success'
-	    ];
+	    return view('product.otp');
+	    // return [
+	    // 	'status' => 'success'
+	    // ];
 	}
 
 	public function verifyOtp (Request $request) 

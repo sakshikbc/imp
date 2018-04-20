@@ -16,10 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate();
+        $products = Product::paginate(9);
         $categories = Category::has('products')->pluck('name');
-        // $reProducts = Product::whereIn('id', $mostly_viewed_products->product_id)->get();
-        // dd($reProducts);
         return view('welcome', compact('products', 'categories'));
     }
 
@@ -42,33 +40,30 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         if($request->hasFile('image')){
-         foreach ($request->image as $file) {
-             $filename = $file->getClientOriginalName();
-               // dd($filename);
-             $name = pathinfo($filename, PATHINFO_FILENAME);
-             $ext = $file->getClientOriginalExtension();
-             $filename = substr(str_slug($name), 0, 10)  . '-' . time() . '.' . $ext;
-             $file->move(public_path('product_images'), $filename);
-             $filepath = 'product_images' . $filename;
-             $media = Product::create([
-                 'image' => 'product_images/'.$filename,
-             ]);
-         }
-     }    
-     $product = Product::create([
+                $file = $request->image;
+               $filename = $file->getClientOriginalName();
+               $name = pathinfo($filename, PATHINFO_FILENAME);
+               $ext = $file->getClientOriginalExtension();
+               $filename = substr(str_slug($name), 0, 10)  . '-' . time() . '.' . $ext;
+               $file->move(public_path('product_images'), $filename);
+               $filepath = 'product_images' . $filename;
+               $media = 'product_images/'.$filename;
+       }    
+       $product = Product::create([
         'product_name' => $request->product_name,
         'original_price' => $request->original_price,
         'discount_price' => $request->discount_price,
         'description' => $request->description,
         'url' => $request->url,
-        'status' => 'active'
-        // 'category_id' => 1,
+        'status' => 'active',
+        'category' => $request->categories,
+        'in_stock' => $request->in_stock,
+        'image' => $media
     ]);
-     $product->categories()->attach($request->category);
-     return back();
- }
+       $product->categories()->attach($request->category);
+       return back();
+   }
 
     /**
      * Display the specified resource.
@@ -82,7 +77,8 @@ class ProductController extends Controller
         $product = Product::where('url', $url)->first();
         $categories = Category::has('products')->pluck('name');
         $recommend = Recommend::create([
-            'product_id' => $product->id, 
+            'product_id' => $product->id,
+            'image' => $product->image
         ]);
         return view('product.show', compact('product', 'categories'));
     }
@@ -120,7 +116,8 @@ class ProductController extends Controller
             'original_price' => $request->original_price,
             'discount_price' => $request->discount_price,
             'description' => $request->description,
-            // 'in_stock' => $request->in_stock,
+            'category' => $request->categories,
+            'in_stock' => $request->in_stock,
         ]);
         Product::find($id)->categories()->attach($request->category);
         return back();
@@ -148,7 +145,8 @@ class ProductController extends Controller
     {
         $data = $request->search;
         $products = Product::where('product_name', 'like', "%$data%")
-        ->orWhere('description', 'like', "%$data%")->paginate();
+        ->orWhere('description', 'like', "%$data%")
+        ->orWhere('category', 'like', "%$data%")->paginate();
         return view('welcome', compact('products'));
     }
 }

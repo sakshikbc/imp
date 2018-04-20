@@ -28,7 +28,7 @@ $meta = [
       <?php foreach ($products as $product): ?>
         <div class="col-sm-4">
           <div class="product-box">
-            <a href="{{ route('product', $product->url ) }}"><img src="{{ asset('product_images/3.jpg') }}" class="product_image"></a>
+            <a href="{{ route('product', $product->url ) }}"><img src="{{ asset($product->image) }}" class="product_image"></a>
             
             <a href="{{ route('product', $product->url ) }}">{{ $product['product_name'] }}</a>
             <br>

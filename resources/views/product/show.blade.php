@@ -17,7 +17,7 @@
 		</div>
 		<div class="col-sm-5">
 			<div class="box">
-				<img src="{{ asset('product_images/3.jpg') }}" class="product_image">
+				<img src="{{ asset($product->image) }}" class="product_image">
 			</div>
 		</div>
 		<div class="col-sm-5">
