@@ -17,7 +17,6 @@ class CreateRecommendsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->nullable();
             $table->integer('product_id');
-            $table->text('image')->nullable();
             $table->timestamps();
         });
     }
