@@ -20,14 +20,17 @@ class Globals {
 		->orderBy('total', 'desc')
 		->take(3)
 		->get();
-		if(!empty($mostly_viewed_products))
+		if(empty( $mostly_viewed_products))
 		{
+			return "No Products Found";		
+		}
+		else {
+			$products = [];
 			foreach ($mostly_viewed_products as $mostly_viewed_product) {
 				$products[] = Product::where('id', $mostly_viewed_product->product_id)->get();
 			}
-			
+			return $products;
 		}
-		return $products;
 		
 	}
 }
