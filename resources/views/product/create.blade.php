@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
-<div class="container">
+  <section class="bg0 p-t-75 p-b-120">
+    <div class="container">
   <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
    {{ csrf_field() }}
    <div class="form-group">
@@ -105,4 +106,5 @@
 <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
+</section>
 @endSection
