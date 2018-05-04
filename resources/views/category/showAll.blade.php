@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+<section class="bg0 p-t-75 p-b-120">
 <div class="container">
 	<table class="table">
 		<thead>
@@ -19,4 +20,5 @@
 		</tbody>
 	</table>
 </div>
+</section>
 @endSection

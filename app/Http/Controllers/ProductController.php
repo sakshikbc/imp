@@ -147,6 +147,6 @@ class ProductController extends Controller
         $products = Product::where('product_name', 'like', "%$data%")
         ->orWhere('description', 'like', "%$data%")
         ->orWhere('category', 'like', "%$data%")->paginate();
-        return view('product.show', compact('products'));
+        return view('product.search', compact('products'));
     }
 }

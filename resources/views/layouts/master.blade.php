@@ -67,7 +67,7 @@
 
 </head>
 <body class="animsition">
-    
+
     <!-- Header -->
     <header>
         <!-- Header desktop -->
@@ -101,7 +101,7 @@
 
             <div class="wrap-menu-desktop top-bar">
                 <nav class="limiter-menu-desktop container">
-                    
+
                     <!-- Logo desktop -->       
                     <a href="{{ url('/') }}" class="logo">
                         <img src="{{ asset('images/icons/logo-01.png') }}" alt="IMG-LOGO">
@@ -131,7 +131,7 @@
                                 <a href="contact.html">Contact</a>
                             </li>
                             <li>
-                                <a href="/login"><span class="glyphicon glyphicon-user space" title="User">@if( Auth::user()) Hi' {{ Auth::user()->name }} 
+                                <a href="#"><span class="glyphicon glyphicon-user space" title="User"></span>@if( Auth::user()) Hi' {{ Auth::user()->name }} 
                                     <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
@@ -141,46 +141,51 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
-                            @endif</a>
+                                <ul class="sub-menu">
+                                <li><a href="{{ url('/') }}">Settings</a></li>
+                                <li><a href="home-02.html">Profile</a></li>
+                            </ul>
+                            @else
                             <ul class="sub-menu">
-                                    <li><a href="{{ url('/') }}">Settings</a></li>
-                                    <li><a href="home-02.html">Profile</a></li>
-                                </ul>
-                            </li>
-                            @if( Auth::user()  && Auth::user()->type == "admin")
-                                <li>
-                                    Products
-                                    <ul class="sub-menu">
-                                        <a href="{{ route('product.create')}}">
-                                            Add Product
-                                        </a>
-                                        <a href="{{ route('product.showAll')}}">
-                                            Show all Products
-                                        </a>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Category
-                                    <ul class="sub-menu">
-                                        <a href="{{ route('category.create')}}">
-                                            Add Category
-                                        </a>
-                                        <a href="{{ route('category.showAll')}}">
-                                            Show all Categories
-                                        </a>
-                                    </ul>
-                                </li>
-                            @endif
+                                <li><a href="{{ url('/login') }}">Login</a></li>
+                                <li><a href="{{ url('/register') }}">Register</a></li>
+                            </ul>
+                            @endif</a>
+                        </li>
+                        @if( Auth::user()  && Auth::user()->type == "admin")
+                        <li>
+                            Products
+                            <ul class="sub-menu">
+                                <a href="{{ route('product.create')}}">
+                                    Add Product
+                                </a>
+                                <a href="{{ route('product.showAll')}}">
+                                    Show all Products
+                                </a>
+                            </ul>
+                        </li>
+                        <li>
+                            Category
+                            <ul class="sub-menu">
+                                <a href="{{ route('category.create')}}">
+                                    Add Category
+                                </a>
+                                <a href="{{ route('category.showAll')}}">
+                                    Show all Categories
+                                </a>
+                            </ul>
+                        </li>
+                        @endif
 
 
-                        </ul>
-                    </div>  
+                    </ul>
+                </div>  
 
-                    <!-- Icon header -->
-                    <div class="wrap-icon-header flex-w flex-r-m">
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-                            <i class="zmdi zmdi-search"></i>
-                        </div>
+                <!-- Icon header -->
+                <div class="wrap-icon-header flex-w flex-r-m">
+                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+                        <i class="zmdi zmdi-search"></i>
+                    </div>
 
                         <!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
                             <i class="zmdi zmdi-shopping-cart"></i>
@@ -308,7 +313,7 @@
     </header>
 
     <!-- Cart -->
-    <div class="wrap-header-cart js-panel-cart">
+<!--     <div class="wrap-header-cart js-panel-cart">
         <div class="s-full js-hide-cart"></div>
 
         <div class="header-cart flex-col-l p-l-65 p-r-25">
@@ -390,7 +395,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </header>
 
 <!--     <div class="container container-fluid header">
@@ -470,48 +475,39 @@
         </h4>
 
         <ul>
-            @if($categories)
-        <?php foreach ($categories as $category): ?>
-            <li class="p-b-10">
-              <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                {{ $category }}
-            </a>
-        </li>
-        <?php endforeach ?>
-        @endif
-        
-    </ul>
-</div>
 
-<div class="col-sm-6 col-lg-3 p-b-50">
-  <h4 class="stext-301 cl0 p-b-30">
-    Help
-</h4>
+        </ul>
+    </div>
 
-<ul>
+    <div class="col-sm-6 col-lg-3 p-b-50">
+      <h4 class="stext-301 cl0 p-b-30">
+        Help
+    </h4>
+
+    <ul>
+        <li class="p-b-10">
+          <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+            Track Order
+        </a>
+    </li>
+
     <li class="p-b-10">
-      <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-        Track Order
-    </a>
-</li>
+        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+            Returns 
+        </a>
+    </li>
 
-<li class="p-b-10">
-  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-    Returns 
-</a>
-</li>
+    <li class="p-b-10">
+        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+            Shipping
+        </a>
+    </li>
 
-<li class="p-b-10">
-  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-    Shipping
-</a>
-</li>
-
-<li class="p-b-10">
-  <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-    FAQs
-</a>
-</li>
+    <li class="p-b-10">
+        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+            FAQs
+        </a>
+    </li>
 </ul>
 </div>
 
@@ -563,7 +559,7 @@
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
-<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!-- <script src="vendor/jquery/jquery-3.2.1.min.js"></script> -->
 <!--===============================================================================================-->
 <script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->

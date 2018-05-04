@@ -13,7 +13,8 @@
 
 Route::get('/', 'ProductController@index');
 Route::get('search', 'ProductController@search')->name('search');
-Route::get('/admin', 'UserController@index');
+// Route::get('/admin', 'UserController@admin');
+Route::get('/login', 'UserController@admin');
 //Product
 Route::get('/product/create', 'ProductController@create')->name('product.create');
 Route::post('/product/store', 'ProductController@store')->name('product.store');

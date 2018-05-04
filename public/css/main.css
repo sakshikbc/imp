@@ -3330,3 +3330,19 @@ input.num-product::-webkit-inner-spin-button {
   }
 
 }
+
+
+
+
+/* My Css */
+.block {
+    width: 40%;
+    display:  block;
+    margin: auto;
+    border: solid 1px;
+    padding:  2em;
+}
+.submit-button {
+    width:  20%;
+    margin:  auto;
+}

@@ -26,6 +26,10 @@ class UserController extends Controller
         //
     }
 
+    public function admin()
+    {
+        return view('auth.login');
+    }
     /**
      * Store a newly created resource in storage.
      *
