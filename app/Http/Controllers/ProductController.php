@@ -5,6 +5,8 @@ use DB;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Recommend;
+use App\Models\Enquiry;
+use App\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -16,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(9);
+        $products = Product::with('user', 'enquiries')->paginate(9);
         $categories = Category::has('products')->pluck('name');
         return view('welcome', compact('products', 'categories'));
     }
@@ -41,29 +43,29 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         if($request->hasFile('image')){
-                $file = $request->image;
-               $filename = $file->getClientOriginalName();
-               $name = pathinfo($filename, PATHINFO_FILENAME);
-               $ext = $file->getClientOriginalExtension();
-               $filename = substr(str_slug($name), 0, 10)  . '-' . time() . '.' . $ext;
-               $file->move(public_path('product_images'), $filename);
-               $filepath = 'product_images' . $filename;
-               $media = 'product_images/'.$filename;
-       }    
-       $product = Product::create([
-        'product_name' => $request->product_name,
-        'original_price' => $request->original_price,
-        'discount_price' => $request->discount_price,
-        'description' => $request->description,
-        'url' => $request->url,
-        'status' => 'active',
-        'category' => $request->categories,
-        'in_stock' => $request->in_stock,
-        'image' => $media
-    ]);
-       $product->categories()->attach($request->category);
-       return back();
-   }
+            $file = $request->image;
+            $filename = $file->getClientOriginalName();
+            $name = pathinfo($filename, PATHINFO_FILENAME);
+            $ext = $file->getClientOriginalExtension();
+            $filename = substr(str_slug($name), 0, 10)  . '-' . time() . '.' . $ext;
+            $file->move(public_path('product_images'), $filename);
+            $filepath = 'product_images' . $filename;
+            $media = 'product_images/'.$filename;
+        }    
+        $product = Product::create([
+            'product_name' => $request->product_name,
+            'original_price' => $request->original_price,
+            'discount_price' => $request->discount_price,
+            'description' => $request->description,
+            'url' => $request->url,
+            'status' => 'active',
+            'category' => $request->categories,
+            'in_stock' => $request->in_stock,
+            'image' => $media
+        ]);
+        $product->categories()->attach($request->category);
+        return back();
+    }
 
     /**
      * Display the specified resource.
@@ -149,4 +151,34 @@ class ProductController extends Controller
         ->orWhere('category', 'like', "%$data%")->paginate();
         return view('product.search', compact('products'));
     }
+
+    public function enquiryStore(Request $request)
+    {
+        $user = $request->user();
+        $enquiry = Enquiry::create([
+            'user_id' => $user->id,
+            'product_id' => $request->id,
+            'type' => 'enquiry'
+        ]);
+
+        return back()->with('flash_message',
+         'Item, Added to your wishlist.');
+    }
+            // $request->user()->enquiries()->syncWithoutDetaching([$product->id]);
+    // return back();
+
+
+    public function enquiries(Request $request)
+    {
+        $enquiries = $request->user()->enquiries()->get(['product_id']);
+        $products = Product::with('enquiries')->whereIn('id', $enquiries)->get();
+        return view('product.enquiries', compact('products'));
+    }
+    public function destroyEnquiry($id)
+    {
+      $wishlist = Enquiry::findOrFail($id);
+      $wishlist->delete();
+      return back()->with('success', 'Item successfully deleted');
+
+  }
 }

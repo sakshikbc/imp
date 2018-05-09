@@ -34,7 +34,7 @@
 @yield('metas')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="icon" type="image/png" href="{{ asset('favicon.png') }}') }}"/>
+<link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.png')}}"/>
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
 <!--===============================================================================================-->
@@ -63,6 +63,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css')}}">
 <!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/myown.css') }}"> -->
+<script src="{{ asset('vendor/jquery/jquery-2.2.3.min.js') }}"></script>
 
 
 </head>
@@ -147,12 +148,12 @@
                             </ul>
                             @else
                             <ul class="sub-menu">
-                                <li><a href="{{ url('/login') }}">Login</a></li>
+                                <li><a href="{{ url('user') }}">Login</a></li>
                                 <li><a href="{{ url('/register') }}">Register</a></li>
                             </ul>
                             @endif</a>
                         </li>
-                        @if( Auth::user()  && Auth::user()->type == "admin")
+                        @if((Auth::user()) && (Auth::user()->type == "admin"))
                         <li>
                             Products
                             <ul class="sub-menu">
@@ -177,6 +178,11 @@
                         </li>
                         @endif
 
+                    @if((Auth::user()) && (Auth::user()->type == "customer"))
+                    <li>
+                        <a href="{{ route('product.enquiries') }}">Enquiries</a>
+                    </li>
+                        @endif
 
                     </ul>
                 </div>  
@@ -191,7 +197,7 @@
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </div> -->
 
-                        <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+                        <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify=" @if(Auth::user()){{ App\Models\Enquiry::where('user_id', Auth::user()->id)->count() }}@else 0 @endif">
                             <i class="zmdi zmdi-favorite-outline"></i>
                         </a>
                     </div>
@@ -557,16 +563,16 @@
 
 </div>
 </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
-<!-- <script src="vendor/jquery/jquery-3.2.1.min.js"></script> -->
 <!--===============================================================================================-->
-<script src="vendor/animsition/js/animsition.min.js"></script>
+<script src="{{ asset('vendor/animsition/js/animsition.min.js') }}"></script>
 <!--===============================================================================================-->
-<script src="vendor/bootstrap/js/popper.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{ asset('vendor/bootstrap/js/popper.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <!--===============================================================================================-->
-<script src="vendor/select2/select2.min.js"></script>
+<script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
 <script>
     $(".js-select2").each(function(){
       $(this).select2({
@@ -576,13 +582,13 @@
   })
 </script>
 <!--===============================================================================================-->
-<script src="vendor/daterangepicker/moment.min.js"></script>
-<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<script src="{{ asset('vendor/daterangepicker/moment.min.js') }}"></script>
+<script src="{{ asset('vendor/daterangepicker/daterangepicker.js') }}"></script>
 <!--===============================================================================================-->
-<script src="vendor/slick/slick.min.js"></script>
-<script src="js/slick-custom.js"></script>
+<script src="{{ asset('vendor/slick/slick.min.js') }}"></script>
+<script src="{{ asset('js/slick-custom.js') }}"></script>
 <!--===============================================================================================-->
-<script src="vendor/parallax100/parallax100.js"></script>
+<script src="{{ asset('vendor/parallax100/parallax100.js') }}"></script>
 <script>
     $('.parallax100').parallax100();
 </script>
@@ -601,9 +607,9 @@
   });
 </script>
 <!--===============================================================================================-->
-<script src="vendor/isotope/isotope.pkgd.min.js"></script>
+<script src="{{ asset('vendor/isotope/isotope.pkgd.min.js')}}"></script>
 <!--===============================================================================================-->
-<script src="vendor/sweetalert/sweetalert.min.js"></script>
+<script src="{{ asset('vendor/sweetalert/sweetalert.min.js')}}"></script>
 <script>
     $('.js-addwish-b2').on('click', function(e){
       e.preventDefault();
@@ -641,7 +647,7 @@
     
 </script>
 <!--===============================================================================================-->
-<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 <script>
     $('.js-pscroll').each(function(){
       $(this).css('position','relative');

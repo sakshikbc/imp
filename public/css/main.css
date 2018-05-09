@@ -3346,3 +3346,50 @@ input.num-product::-webkit-inner-spin-button {
     width:  20%;
     margin:  auto;
 }
+
+.mainOverLay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.51);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000000;
+    display: flex;
+    /*align-items: center;*/
+    justify-content: center;
+    display: none;
+}
+.center-otp-box {
+     max-width: 500px;
+     width: 100%;
+     height: 350px;
+     padding: 15px;
+     margin: 0 auto;
+     background: #fff;
+     transform: translateY(50%);
+     border-radius: 3px;
+}
+
+.otp-input {
+  border: none;
+      border-bottom: 1px solid #ddd;
+      letter-spacing: 40px;
+      font-size: 40px;
+      background: none;
+      width: 100%;
+      padding: 8px;
+      text-align: center;
+      margin: 30px auto;
+      outline: 0;
+}
+.close-otp {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #000;
+}
+p {
+    color: #60656f;
+    line-height: 24px;
+}

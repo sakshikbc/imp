@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        view()->composer('layouts.sidebar', function($view) {
+        view()->composer('layouts.master', function($view) {
             $view->with('categories', $this->globals->categories());
             $view->with('products', $this->globals->products());
         });

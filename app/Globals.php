@@ -1,6 +1,7 @@
 <?php
 namespace App;
 use App\Models\Category;
+use App\Models\Enquiry;
 use App\Models\Product;
 use DB;
 
@@ -30,7 +31,6 @@ class Globals {
 				$products[] = Product::where('id', $mostly_viewed_product->product_id)->get();
 			}
 			return $products;
-		}
-		
+		}	
 	}
 }

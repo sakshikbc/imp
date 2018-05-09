@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Category;
 use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Product extends Model
 {
@@ -20,13 +21,26 @@ class Product extends Model
 	{
 		return $this->belongsToMany(Category::class);
 	}
+
 	public function getRouteKeyName()   
 	{
 		return 'url';
 	}
+
 	public function recommend()
 	{
 		return $this->belongsTo(Recommend::class);
 	}
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
+	public function enquiries()
+	{
+		return $this->hasMany(Enquiry::class);
+	}
+
+	
+
 
 }

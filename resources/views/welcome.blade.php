@@ -415,7 +415,7 @@ $meta = [
             <div class="block2-pic hov-img0">
               <img src="{{ asset($product['image']) }}" alt="IMG-PRODUCT">
 
-              <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+              <a href="#"  id="pro_id" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" data-id="{{ $product->id }}">
                 Quick View
               </a>
             </div>
@@ -429,13 +429,20 @@ $meta = [
                 <span class="stext-105 cl3">
                   &#8377; {{ $product['original_price']}}
                 </span>
-              </div>
-
-              <div class="block2-txt-child2 flex-r p-t-3">
-                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                  <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-                  <img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
-                </a>
+                @if( Auth::user())
+                  @if(App\Models\Enquiry::where('user_id', Auth::user()->id)->where('product_id', $product['id'])->first())
+                  Enquired
+                  @else
+                <span class="pull-right">
+                  <form id="product-fav-form" action="{{ route('product.fav.store') }}" 
+                  method="POST">
+                  {{ csrf_field() }}
+                  <input type="hidden" name="id" value="{{ $product['id'] }}">
+                  <input type="submit" name="type" value="Enquiry">
+                </form>
+              </span>
+              @endif
+              @endif
               </div>
             </div>
           </div>
@@ -457,11 +464,11 @@ $meta = [
                       <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
                       <div class="slick3 gallery-lb">
-                        <div class="item-slick3" data-thumb="images/product-detail-01.jpg">
+                        <div class="item-slick3" data-thumb="{{ asset($product['image']) }}">
                           <div class="wrap-pic-w pos-relative">
-                            <img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
+                            <img src="{{ asset($product['image']) }}" alt="IMG-PRODUCT">
 
-                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
+                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset($product['image']) }}">
                               <i class="fa fa-expand"></i>
                             </a>
                           </div>
@@ -502,31 +509,9 @@ $meta = [
                     </span>
 
                     <p class="stext-102 cl3 p-t-23">
-                      Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+                      {{ $product->description }}
                     </p>
-
-                    <div class="flex-w flex-r-m p-b-10">
-                      <div class="size-204 flex-w flex-m respon6-next">
-                        <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                          <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                            <i class="fs-16 zmdi zmdi-minus"></i>
-                          </div>
-
-                          <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-                          <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                            <i class="fs-16 zmdi zmdi-plus"></i>
-                          </div>
-                        </div>
-
-                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                          Add to cart
-                        </button>
-                      </div>
-                    </div>  
-                  </div>
-
-                  <!--  -->
+                </div>
                   <div class="flex-w flex-m p-l-100 p-t-40 respon7">
                     <div class="flex-m bor9 p-r-10 m-r-11">
                       <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
@@ -534,27 +519,22 @@ $meta = [
                       </a>
                     </div>
 
-                    <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-                      <i class="fa fa-facebook"></i>
-                    </a>
+                    <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook" href="https://www.facebook.com/sharer/sharer.php?u=&t=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;"><i class="fa fa-facebook"></i>
+            </a>
 
-                    <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-                      <i class="fa fa-twitter"></i>
-                    </a>
+                    <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter" href="https://twitter.com/intent/tweet?" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=%20Check%20up%20this%20awesome%20content' + encodeURIComponent(document.title) + ':%20 ' + encodeURIComponent(document.URL)); return false;"><i class="fa fa-twitter"></i></a>
 
-                    <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+                    <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus" href="https://plus.google.com/share?url=" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;">
                       <i class="fa fa-google-plus"></i>
                     </a>
+                    <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" href="whatsapp://send?text=" data-tooltip="Whatsapp" onclick="window.open('whatsapp://send?text=' + encodeURIComponent(document.URL)); return false;"><i class="fa fa-whatsapp"></i></a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-
-      <?php endforeach ?>
-    </div>
+    <?php endforeach ?>
   </div>
   @endif
   {{  $products->render() }}

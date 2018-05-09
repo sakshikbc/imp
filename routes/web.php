@@ -14,7 +14,7 @@
 Route::get('/', 'ProductController@index');
 Route::get('search', 'ProductController@search')->name('search');
 // Route::get('/admin', 'UserController@admin');
-Route::get('/login', 'UserController@admin');
+Route::get('user', 'UserController@index');
 //Product
 Route::get('/product/create', 'ProductController@create')->name('product.create');
 Route::post('/product/store', 'ProductController@store')->name('product.store');
@@ -48,3 +48,9 @@ Route::get('/comment/reject/{comment}', 'CommentsController@reject')->name('comm
 
 Route::post('/requestOtp', 'OtpController@requestOtp');
 Route::post('/verifyOtp', 'OtpController@verifyOtp');
+
+
+
+Route::post('/products/enquiries', 'ProductController@enquiryStore')->name('product.fav.store');
+Route::delete('/products/{product}/enquiries', 'ProductController@destroyEnquiry')->name('product.fav.destroy');
+Route::get('/enquiries', 'ProductController@enquiries')->name('product.enquiries');
