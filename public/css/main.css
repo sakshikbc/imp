@@ -3393,3 +3393,13 @@ p {
     color: #60656f;
     line-height: 24px;
 }
+.hov-img0{
+  height: 300px;
+  width: 100%;
+
+}
+.hov-img0 img{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
