@@ -270,6 +270,7 @@
     [ Show modal1 ]*/
     $('.js-show-modal1').on('click',function(e){
         e.preventDefault();
+        $(".js-modal1 #product_name").val( product_name );
         $('.js-modal1').addClass('show-modal1');
     });
 

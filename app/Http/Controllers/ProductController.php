@@ -5,6 +5,7 @@ use DB;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Recommend;
+use App\Models\Otp;
 use App\Models\Enquiry;
 use App\User;
 use Illuminate\Http\Request;
@@ -63,6 +64,7 @@ class ProductController extends Controller
             'in_stock' => $request->in_stock,
             'image' => $media
         ]);
+
         $product->categories()->attach($request->category);
         return back();
     }
@@ -160,9 +162,17 @@ class ProductController extends Controller
             'product_id' => $request->id,
             'type' => 'enquiry'
         ]);
+        $product = Product::where('id', $request->id)->first();
+        $phone = 9039541384;
+        $otp = rand(1000, 9999);
+        $request->session()->put('otp', $otp);
+        // sending OTP
+        $MSG91 = new Otp();
+        $responseOtp = $MSG91->sendEnquiry($otp, $phone, $user->name, $product->product_name);
+        // return $response;
 
         return back()->with('flash_message',
-         'Item, Added to your wishlist.');
+           'Item, Added to your wishlist.');
     }
             // $request->user()->enquiries()->syncWithoutDetaching([$product->id]);
     // return back();
