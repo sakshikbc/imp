@@ -415,9 +415,98 @@ $meta = [
             <div class="block2-pic hov-img0">
               <img src="{{ asset($product['image']) }}" alt="IMG-PRODUCT">
 
-              <a href="#"  id="pro_id" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" data-id="{{ $product->id }}">
+              <a href="#"  class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" data-title="{{ $product->product_name }}" data-price="{{ $product->original_price }}" data-description="{{ $product->description }}" data-image="{{ $product->image }}">
                 Quick View
               </a>
+
+              <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+                <div class="overlay-modal1 js-hide-modal1"></div>
+
+                <div class="container">
+                  <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
+                    <button class="how-pos3 hov3 trans-04 js-hide-modal1">
+                      <img src="images/icons/icon-close.png" alt="CLOSE">
+                    </button>
+
+                    <div class="row">
+                      <div class="col-md-6 col-lg-7 p-b-30">
+                        <div class="p-l-25 p-r-30 p-lr-0-lg">
+                          <div class="wrap-slick3 flex-sb flex-w">
+                            <div class="wrap-slick3-dots"></div>
+                            <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+                            <div class="slick3 gallery-lb">
+                              <div class="item-slick3" data-thumb="{{ asset($product['image']) }}">
+                                <div class="wrap-pic-w pos-relative">
+                                  <img id="image" alt="IMG-PRODUCT">
+
+                                  <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" id="image" href="">
+                                    <i class="fa fa-expand"></i>
+                                  </a>
+                                </div>
+                              </div>
+
+                              <div class="item-slick3" data-thumb="images/product-detail-02.jpg">
+                                <div class="wrap-pic-w pos-relative">
+                                  <img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
+
+                                  <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
+                                    <i class="fa fa-expand"></i>
+                                  </a>
+                                </div>
+                              </div>
+
+                              <div class="item-slick3" data-thumb="images/product-detail-03.jpg">
+                                <div class="wrap-pic-w pos-relative">
+                                  <img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
+
+                                  <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
+                                    <i class="fa fa-expand"></i>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 col-lg-5 p-b-30">
+                        <div class="p-r-50 p-t-5 p-lr-0-lg">
+                          <h4 class="mtext-105 cl2 js-name-detail p-b-14" >
+
+                            <input type="text" id="product_name" disabled="" />
+                          </h4>
+
+                          <span class="mtext-106 cl2">
+                          	&#8377;<input type="text" id="price" disabled="" />
+                          </span>
+
+                          <p class="stext-102 cl3 p-t-23">
+                            <input type="text" id="description" disabled="" />
+                          </p>
+                        </div>
+                        <div class="flex-w flex-m p-l-100 p-t-40 respon7">
+                          <div class="flex-m bor9 p-r-10 m-r-11">
+                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+                              <i class="zmdi zmdi-favorite"></i>
+                            </a>
+                          </div>
+
+                          <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook" href="https://www.facebook.com/sharer/sharer.php?u=&t=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;"><i class="fa fa-facebook"></i>
+                          </a>
+
+                          <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter" href="https://twitter.com/intent/tweet?" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=%20Check%20up%20this%20awesome%20content' + encodeURIComponent(document.title) + ':%20 ' + encodeURIComponent(document.URL)); return false;"><i class="fa fa-twitter"></i></a>
+
+                          <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus" href="https://plus.google.com/share?url=" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;">
+                            <i class="fa fa-google-plus"></i>
+                          </a>
+                          <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" href="whatsapp://send?text=" data-tooltip="Whatsapp" onclick="window.open('whatsapp://send?text=' + encodeURIComponent(document.URL)); return false;"><i class="fa fa-whatsapp"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="block2-txt flex-w flex-t p-t-14">
@@ -430,9 +519,9 @@ $meta = [
                   &#8377; {{ $product['original_price']}}
                 </span>
                 @if( Auth::user())
-                  @if(App\Models\Enquiry::where('user_id', Auth::user()->id)->where('product_id', $product['id'])->first())
-                  Enquired
-                  @else
+                @if(App\Models\Enquiry::where('user_id', Auth::user()->id)->where('product_id', $product['id'])->first())
+                Enquired
+                @else
                 <span class="pull-right">
                   <form id="product-fav-form" action="{{ route('product.fav.store') }}" 
                   method="POST">
@@ -443,110 +532,41 @@ $meta = [
               </span>
               @endif
               @endif
-              </div>
             </div>
           </div>
         </div>
-        <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-          <div class="overlay-modal1 js-hide-modal1"></div>
-
-          <div class="container">
-            <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-              <button class="how-pos3 hov3 trans-04 js-hide-modal1">
-                <img src="images/icons/icon-close.png" alt="CLOSE">
-              </button>
-
-              <div class="row">
-                <div class="col-md-6 col-lg-7 p-b-30">
-                  <div class="p-l-25 p-r-30 p-lr-0-lg">
-                    <div class="wrap-slick3 flex-sb flex-w">
-                      <div class="wrap-slick3-dots"></div>
-                      <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
-                      <div class="slick3 gallery-lb">
-                        <div class="item-slick3" data-thumb="{{ asset($product['image']) }}">
-                          <div class="wrap-pic-w pos-relative">
-                            <img src="{{ asset($product['image']) }}" alt="IMG-PRODUCT">
-
-                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset($product['image']) }}">
-                              <i class="fa fa-expand"></i>
-                            </a>
-                          </div>
-                        </div>
-
-                        <div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-                          <div class="wrap-pic-w pos-relative">
-                            <img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
-                              <i class="fa fa-expand"></i>
-                            </a>
-                          </div>
-                        </div>
-
-                        <div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-                          <div class="wrap-pic-w pos-relative">
-                            <img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
-                              <i class="fa fa-expand"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6 col-lg-5 p-b-30">
-                  <div class="p-r-50 p-t-5 p-lr-0-lg">
-                    <h4 class="mtext-105 cl2 js-name-detail p-b-14" >
-                      <input type="" name="product_name" id="product_name" value="{{ $product->product_name}}" disabled="">
-                    </h4>
-
-                    <span class="mtext-106 cl2">
-                      &#8377; {{ $product['original_price']}}
-                    </span>
-
-                    <p class="stext-102 cl3 p-t-23">
-                      {{ $product->description }}
-                    </p>
-                </div>
-                  <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-                    <div class="flex-m bor9 p-r-10 m-r-11">
-                      <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-                        <i class="zmdi zmdi-favorite"></i>
-                      </a>
-                    </div>
-
-                    <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook" href="https://www.facebook.com/sharer/sharer.php?u=&t=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;"><i class="fa fa-facebook"></i>
-            </a>
-
-                    <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter" href="https://twitter.com/intent/tweet?" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=%20Check%20up%20this%20awesome%20content' + encodeURIComponent(document.title) + ':%20 ' + encodeURIComponent(document.URL)); return false;"><i class="fa fa-twitter"></i></a>
-
-                    <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus" href="https://plus.google.com/share?url=" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;">
-                      <i class="fa fa-google-plus"></i>
-                    </a>
-                    <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" href="whatsapp://send?text=" data-tooltip="Whatsapp" onclick="window.open('whatsapp://send?text=' + encodeURIComponent(document.URL)); return false;"><i class="fa fa-whatsapp"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    <?php endforeach ?>
-  </div>
-  @endif
-  {{  $products->render() }}
+      </div>
+        
+      <?php endforeach ?>
+    </div>
+    @endif
+    {{  $products->render() }}
 
 
-  <!-- Load more -->
-  <div class="flex-c-m flex-w w-full p-t-45">
-    <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-      Loading
-    </a>
-  </div>
-</section>
+    <!-- Load more -->
+    <div class="flex-c-m flex-w w-full p-t-45">
+      <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+        Load more
+      </a>
+    </div>
+  </section>
 
+  <script type="text/javascript">
+    $('.js-show-modal1').on('click',function(e){
+		var get_product_name = $(this).data('title');
+		var price = $(this).data('price');
+		var description = $(this).data('description');
+		var image = $(this).data('image');
+		$(".js-modal1 #product_name").val( get_product_name );
+		$(".js-modal1 #price").val( price );
+		$(".js-modal1 #description").val( description );
+		$(".js-modal1 #image").attr('src',image);
+        $('.js-modal1').addClass('show-modal1');
+    });
 
-@endSection
+    $('.js-hide-modal1').on('click',function(){
+        $('.js-modal1').removeClass('show-modal1');
+    });
+  </script>
+
+  @endSection

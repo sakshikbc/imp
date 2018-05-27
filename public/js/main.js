@@ -100,11 +100,11 @@
 
             $('.sub-menu-m').each(function(){
                 if($(this).css('display') == 'block') { console.log('hello');
-                    $(this).css('display','none');
-                    $(arrowMainMenu).removeClass('turn-arrow-main-menu-m');
-                }
-            });
-                
+                $(this).css('display','none');
+                $(arrowMainMenu).removeClass('turn-arrow-main-menu-m');
+            }
+        });
+            
         }
     });
 
@@ -268,11 +268,15 @@
     
     /*==================================================================
     [ Show modal1 ]*/
-    $('.js-show-modal1').on('click',function(e){
-        e.preventDefault();
-        $(".js-modal1 #product_name").val( product_name );
-        $('.js-modal1').addClass('show-modal1');
-    });
+    // $('.js-show-modal1').on('click',function(e){
+    //     e.preventDefault();
+    //     // $(".js-modal1 #product_name").val( product_name );
+    //     $('#fid').val($(this).data('id'));
+    //     $('#product_name').val($(this).data('product_name'));
+    //     $('#description').val($(this).data('description'));
+    //     $('#price').val($(this).data('price'));
+    //     $('.js-modal1').addClass('show-modal1');
+    // });
 
     $('.js-hide-modal1').on('click',function(){
         $('.js-modal1').removeClass('show-modal1');
