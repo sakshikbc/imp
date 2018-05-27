@@ -9,26 +9,28 @@
 <style type="text/css">
 
 </style>
+@section('content')
+<div class="sec-banner bg0 p-t-80 p-b-50">
+<div class="container">
 <section class="bg0 p-t-75 p-b-120">
-	<div class="container">
-		            <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-              <div class="row">
-                <div class="col-md-6 col-lg-7 p-b-30">
-                  <div class="p-l-25 p-r-30 p-lr-0-lg">
-                    <div class="wrap-slick3 flex-sb flex-w">
-                      <div class="wrap-slick3-dots"></div>
-                      <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+    <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
+      <div class="row">
+        <div class="col-md-6 col-lg-7 p-b-30">
+          <div class="p-l-25 p-r-30 p-lr-0-lg">
+            <div class="wrap-slick3 flex-sb flex-w">
+              <div class="wrap-slick3-dots"></div>
+              <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
-                      <div class="slick3 gallery-lb">
-                        <div class="item-slick3" data-thumb="{{ asset($product['image']) }}">
-                          <div class="wrap-pic-w pos-relative">
-                            <img src="{{ asset($product['image']) }}" alt="IMG-PRODUCT">
+              <div class="slick3 gallery-lb">
+                <div class="item-slick3" data-thumb="{{ asset($product['image']) }}">
+                  <div class="wrap-pic-w pos-relative">
+                    <img src="{{ asset($product['image']) }}" alt="IMG-PRODUCT">
 
-                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset($product['image']) }}">
-                              <i class="fa fa-expand"></i>
-                            </a>
-                          </div>
-                        </div>
+                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset($product['image']) }}">
+                      <i class="fa fa-expand"></i>
+                    </a>
+                  </div>
+                </div>
 
                        <!--  <div class="item-slick3" data-thumb="images/product-detail-02.jpg">
                           <div class="wrap-pic-w pos-relative">
@@ -66,7 +68,7 @@
 
                     <p class="stext-102 cl3 p-t-23">
                      {{ $product->description }}
-                    </p>
+                   </p>
 
                  <!--    <div class="flex-w flex-r-m p-b-10">
                       <div class="size-204 flex-w flex-m respon6-next">
@@ -98,7 +100,7 @@
                     </div>
 
                     <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook" href="https://www.facebook.com/sharer/sharer.php?u=&t=" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;"><i class="fa fa-facebook"></i>
-						</a>
+                    </a>
 
                     <a  class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter" href="https://twitter.com/intent/tweet?" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=%20Check%20up%20this%20awesome%20content' + encodeURIComponent(document.title) + ':%20 ' + encodeURIComponent(document.URL)); return false;"><i class="fa fa-twitter"></i></a>
 
@@ -110,8 +112,8 @@
                 </div>
               </div>
             </div>
-	</div>
-</section>
+          </div>
+        </section>
 
 <!-- <div class="container">
 	<div class="row">
@@ -147,4 +149,7 @@
 		</div>
 	</div>
 </div> -->
+</div>
+</div>
+</div>
 @endSection

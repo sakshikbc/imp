@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('user', 'enquiries')->paginate(9);
+        $products = Product::with('user', 'enquiries')->latest()->paginate(8);
         $categories = Category::has('products')->pluck('name');
         return view('welcome', compact('products', 'categories'));
     }
@@ -77,7 +77,6 @@ class ProductController extends Controller
      */
     public function show(Product $product, $url)
     {
-
         $product = Product::where('url', $url)->first();
         $categories = Category::has('products')->pluck('name');
         $recommend = Recommend::create([
@@ -91,6 +90,13 @@ class ProductController extends Controller
     {
         $products = Product::all();
         return view('product.showAll', compact('products'));
+    }
+
+    public function showAllProducts()
+    {
+        $products = Product::with('user', 'enquiries')->latest()->paginate(8);
+        $categories = Category::has('products')->pluck('name');
+        return view('product.show-all-products', compact('products', 'categories'));
     }
 
 

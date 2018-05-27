@@ -511,7 +511,7 @@ $meta = [
 
             <div class="block2-txt flex-w flex-t p-t-14">
               <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                <a href="{{ route('product.show', $product->url) }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                   {{ $product['product_name'] }}
                 </a>
 
@@ -545,8 +545,8 @@ $meta = [
 
     <!-- Load more -->
     <div class="flex-c-m flex-w w-full p-t-45">
-      <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-        Load more
+      <a href="{{ route('show-all')}}" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+        Show All Products
       </a>
     </div>
   </section>

@@ -18,7 +18,8 @@ Route::get('user', 'UserController@index');
 //Product
 Route::get('/product/create', 'ProductController@create')->name('product.create');
 Route::post('/product/store', 'ProductController@store')->name('product.store');
-Route::get('/products', 'ProductController@showAll')->name('product.showAll');
+Route::get('/products/admin', 'ProductController@showAll')->name('product.showAll');
+Route::get('/products', 'ProductController@showAllProducts')->name('show-all');
 Route::get('/product/{id}', 'ProductController@show')->name('product.show');
 Route::get('/product/{id}/edit', 'ProductController@edit')->name('product.edit');
 Route::post('/product/{id}/update', 'ProductController@update')->name('product.update');
